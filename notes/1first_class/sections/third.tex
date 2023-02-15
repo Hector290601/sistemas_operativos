@@ -1,0 +1,41 @@
+\newpage
+\part{\acrlong{thirdSection}}
+\chapter{Definiciones del \textit{Sistema Operativo}}
+\section{Tannenbaum:}
+\paragraph{Primera} El sistema operativo es una colecci\'{o}n de programas orientados a administrar los recursos del equipo: el \textit{CPU}, la \textit{memoria}, los \textit{dispositivos de I/O} y los \textit{sistemas de archivos}\\
+
+\paragraph{Segunda} El sistema operativo es na colecci\'{o}n de programas que se encargan de extender las capacidades del hardware\\
+
+\textbf{Buscar la teoria de las vecindades.}\\
+
+El sistema operativo es el software que controla la operaci\'{o}n general de una computadora, proporciona los medios por los que un usuario puede almacenar y recuperar archivos, provee la interfaz por la que un usuario puede solicitar la ejecuci\'{o}n de programas y provee el ambiente necesario para que los programas se ejecuten.\\
+
+Tannenbaum se centra en el hardware y deja fuera a los usuarios, mientras que el segundo autor se centra en el usuario y su interacci\'{o}n con los sistemas operativos.\\
+
+\paragraph{Doom} corre en todos lados por que \textbf{El juego es un sistema operativo en s\'{i}} y no depende de un sistema operativo, solamente depende de actualizar la forma en la que el SO interact\'{u}a con el hardware.\\
+
+\newpage
+
+\chapter{Repaso Hist\'{o}rico}
+\section{Enniac}
+\paragraph{Prop\'{o}sito particular} No tiene caso hacer una gran inversi\'{o}n de software y hardware si es para un prop\'{o}sito muy espec\'{i}fico\\
+
+\paragraph{S\'{i}ndrome del martillo} Cuando tu herramienta es un martillo, a todo le ves cara de clavo.
+
+\newpage
+
+\chapter{Estructura del \textit{sistema operativo}}
+
+\section{Capas}
+\paragraph{Aplicaciones} Est\'{a}n en una capa externa. \\
+
+\paragraph{Kernel} Del alem\'{a}n n\'{u}cleo, se busca que sea lo m\'{i}nimo posible, pero que sea muy fiable y sin fallos, administra los procesos internos y da las bases de la administraci\'{o}n de memoria, tienen ligaduras est\'{a}ticas y se deben ligar en modo est\'{a}tico.\\
+Los procesadores tienen un switch l\'{o}gico para que el procesador entre en modo kernel y deje total liberad al usuario, o en modo usuario, para que el kernel tenga el control total sobre los recursos. \\
+
+\paragraph{System calls} sirven para que las aplicaciones puedan interactuar con el kernel e interactuar con los dispositivos de I/O \\
+
+\paragraph{Librer\'{i}as} Ayudan a la aplicaci\'{o}n a interactuar con las systemcalls.\\
+
+\paragraph{Shell (sessions)} Es el primer proceso que se levanta con procesos de usuario, antes de las sesiones, todo va mediante kernel y librer\'{i}as.\\
+
+\textbf{Ver pel\'{i}cula de Tron, de los 80s}\\
