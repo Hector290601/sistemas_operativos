@@ -31,5 +31,21 @@ Para estos, basta negar alguna condicion del DL.
 
 \subsection{Exclusion mutua.} Reemplazar recursos preemtive por non-preemtive.\\
 \subsection{Hold \& Wait} Podemos agrupoar todos los recursos y asignarlos en una sola operacio\'{o}n\\
+\subsection{Noon-preemtive} Son operaciones que 'guardan' el estado inciial de los recursos y en caso de problemas preemtive, regeneran \'{e}ste.\\
 
+\section{Comunicaci\'{o}n entre procesos.}
 
+\subsection{Se\~{n}ales.} Estas permiten a un proceso de la jerarquia enviar una se\~{n}al con un valor entero que interrumpe el flujo de la aplicaci\'{o}n para ejecutar la funci\'{o}n definida como handler.\\
+
+\subsection{Pipes} Todos los procesos se asocian a tres streams.
+\begin{enumerate}
+	\item \textit{STDIN} - Entrada est\'{a}ndar
+	\item \textit{STDOUT} - Salida est\'{a}ndar.
+	\item \textit{STDERR} - Salida  de errores.
+\end{enumerate}
+\paragraph{Proceso1 \textit{>} file.txt} Escribe la salida STDOUT a un archivo file.txt (sobreescribe el archivo)\\
+\paragraph{Proceso1 \textit{>>} file.txt} Escribe la salida STDOUT a un archivo (append)\\
+\paragraph{Proceso1 \textit{|} Proceso2} Asigna STDOUT de Proceso1 al STDIN de Proceso2\\
+\paragraph{Proceso1 \textit{2>} file.txt} Escribe la salida STDERR de Proceso1 a file.txt\\
+
+\chapter{Administraci\'{o}n de la memoria.}
