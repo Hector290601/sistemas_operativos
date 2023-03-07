@@ -16,23 +16,17 @@ double tirada_a = 0;
 double tirada_b = 0;
 
 void *tiradaA(void *vargp){
-	int *myid = (int *)vargp;
 	while(arbitro == 0);
 	arbitro = 0;
-	srand(time(NULL));
-	srand(*myid);
-	tirada_a = rand();
+	tirada_a = 0;
 	arbitro = 1;
 	return NULL;
 }
 
 void *tiradaB(void *vargp){
-	int *myid = (int *)vargp;
 	while(arbitro == 0);
 	arbitro = 0;
-	srand(time(NULL));
-	srand(*myid);
-	tirada_b = rand();
+	tirada_b = 0;
 	arbitro = 1;
 	return NULL;
 }
@@ -40,11 +34,11 @@ void *tiradaB(void *vargp){
 int main(){
 	arbitro = 1;
 	int ganadas_a = 0, ganadas_b = 0, empates = 0;
-	for(int i = 0; i < 100; i++){
+	for(int i = 0; i < 10000; i++){
 		pthread_t idb;
 		pthread_t ida;
-		pthread_create(&ida, NULL, tiradaA, (void *)&ida);
-		pthread_create(&idb, NULL, tiradaB, (void *)&idb);
+		pthread_create(&ida, NULL, tiradaA, NULL);
+		pthread_create(&idb, NULL, tiradaB, NULL);
 		pthread_join(ida, NULL);
 		pthread_join(idb, NULL);
 		arbitro = 0;
