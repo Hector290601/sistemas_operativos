@@ -1,0 +1,17 @@
+\documentclass{report}
+
+\usepackage{import}
+
+\import{./}{imports.tex}
+\import{./}{acronyms.tex}
+\import{./}{basic_data.tex}
+
+\addbibresource{bibliography.bib}
+
+\begin{document}
+	\import{./}{titlepage.tex}
+	\tableofcontents
+	\import{./}{important_data.tex}
+	\import{./sections/}{first.tex}
+	\import{./}{authors.tex}
+\end{document}

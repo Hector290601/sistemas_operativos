@@ -1,0 +1,35 @@
+\newpage
+\chapter{Death locks.}
+
+\textit{Bloqueo mutuo}\\
+Es un evento en el que dos o mas procesos se bloquean en espera de dos o mas recursos de modo que no pueden prograsar independientemente del tiempo que pase..\\
+Es como cuando dos camiones quieren dar vuelta y se bloquean mutuamente.\\
+
+Tenemos un deadlock solo cuando se cumplen las siguientes 4 condiciones:
+\begin{enumerate}
+	\item Exclusi\'{o}n mutua. Los procesos reclaman control exclusivo de los procesos.
+	\item Hold \& Wait. Los procesos mantienen las asignaciones a los recursos en lo que esperan por los demas recursos que necesitan.
+	\item Non-preemption. La asignacion de los recursos no puede ser revocada.
+	\item Espera circular. Se genera una secuenia de procesos en espera de recursos asignados a otros procesos.
+\end{enumerate}
+Estas condiciones sirven para saber cuando es un bloqueo 'normal' o cuando es un deathlock
+
+\section{Mecanismos de detecci\'{o}n}
+
+\subsection{Algoritmo del avestruz}
+En sistemas operativos y no implementa ning\'{u}n mecanismo dejando a cargo del usuario el identificar bloqueos y tomar las medidas correctivas.\\
+\subsection{Modelo gr\'{a}fico.}
+En este se dibuja un grafo en el que se pueden buscar los ciclos.\\
+\subsection{An\'{a}lisis matricial.}
+Se pueden construir matrices que representen los grafos de asignacion de recuros que se operan para detectar ciclos.\\
+Es costos en CPU y solamente permite detectar.
+\subsection{An\'{a}lisis de regiones de riesgo.}
+Se define como regi\'{o}n de riesgo el estado de una matriz de asignacion de recursos inmediata anterior al deathlock y se niegan las agignaciones de recursos que llevan a regiones de riesgo.\\
+
+\section{Prevencion de los deathlocks.}
+Para estos, basta negar alguna condicion del DL.
+
+\subsection{Exclusion mutua.} Reemplazar recursos preemtive por non-preemtive.\\
+\subsection{Hold \& Wait} Podemos agrupoar todos los recursos y asignarlos en una sola operacio\'{o}n\\
+
+

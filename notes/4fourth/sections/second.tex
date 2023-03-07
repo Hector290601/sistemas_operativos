@@ -1,0 +1,69 @@
+\newpage
+\part{Administraci\'{o}n de procesos.}
+
+\chapter{Modelo de procesos.}
+
+\section{Definiciones.}
+\begin{itemize}
+	\item Programa: Serie de instrucciones ordenadas en un lenguaje regular
+	\item Proceso: Instancia de ejecuci\'{o}n de un programa con los siguientes elementos:
+		\begin{itemize}
+			\item Identificador.
+			\item Comportamiento \textit{programa}.
+			\item Estado \textit{Almacenado en memoria}.
+			\item Hilo de ejecuci\'{o}n \textit{thread}. Es el estado de una secuencia de ejecuci\'{o}n de instrucciones en un proceso. Todos los procesos tienen al menos un hilo.
+		\end{itemize}
+\end{itemize}
+El modelo de computabilidad de \textit{Turing} explica qu\'{e} hacen las computadoras, no lo que se hace con ellas.\\
+Los programas que tratan de cubrir todo no deben hacerlo, se deben dividir en diferentes programas que hagan cosas bastante espec\'{i}ficas.\\
+No pueden existir procesos sin hilos, los hilos solamente le pertenecen a un proceso.\\
+
+\chapter{Ciclo de vida de los procesos.}
+\begin{itemize}
+	\item Creaci\'{o}n de procesos.
+	\item Ejecuci\'{o}n.
+	\item Terminaci\'{o}n.
+\end{itemize}
+Comienzan, hacen lo que se requiere que hagan y terminan en alg\'{u}n momento.
+
+\section{Creaci\'{o}n.}
+
+\subsection{Formas de creaci\'{o}n de procesos.}
+\begin{itemize}
+	\item Ceeados desde otro proceso ya existente.
+		\begin{itemize}
+			\item Hereda variables de ambiente.
+			\item Privilegios.
+			\item Registro proceso padre.
+			\item Grupos de procesos.
+		\end{itemize}
+	\item Cuando arranca el sistema operativo, el proceso de \textit{Boot} genera una serie de procesos. (Padre = 0), con privilegios de administrador.
+		\begin{itemize}
+			\item Login.
+			\item \textit{Init.d} (ahora \textit{system.d} en system-basedi OS.)
+			\item Gestores de dispositivos.
+		\end{itemize}
+	\item Por petici\'{o}n de usuario en una interfaz gr\'{a}fica. (En sistemas operativos como Android)
+	\item Por generar ambientes de ejecuci\'{o}n distintios para las aplicaciones.
+	\item Como parte del procesamiento por lotes (Batch, en el contexto de los Mainframes y sistemas que no son de tiempo compartido).
+\end{itemize}
+Los procesos pueden cambiar sus variables de ambiente.\\
+Los procesos registran cu\'{a}l es su proceso padre.\\
+Si un proceso modifica sus variables de ambiente y crea un nuevo proceso, pasas las variables de entorno modificadas.\\
+Estos procesos a menudo cambiab su usuario y grupo efectivos para operar con permisos m\'{a}s adecuados.\\
+
+\section{Ejecuci\'{o}n.}
+
+Tres posibles estados:
+\begin{itemize}
+	\item En verdadera ejecuci\'{o}n.
+	\item Bloqueado, el CPU lo ignora completamente.
+	\item Listo, el proceso est\'{a} esperando a que el CPU lo atienda.
+\end{itemize}
+\begin{enumerate}
+	\item El proceso inicia su turno de ejecuci\'{o}n.
+	\item Se termina el \textit{quantum} de ejecuci\'{o}n y se regresa a la fila de listos.
+	\item El proceso en ejecuci\'{o}n se bloquea, por ejemplo, por una operaci\'{o}n de \textit{I/O} o una llamada a sistema.
+	\item Se desbloquea el proceso.
+	\item Bloquear un proceso que no est\'{a} en ejecuci\'{o}n por el administrados o acci\'{o}n de otro proceso.
+\end{enumerate}
