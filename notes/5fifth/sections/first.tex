@@ -1,0 +1,91 @@
+\newpage
+\chapter{Condiciones de carrera.}
+
+Modelo de regi\'{o}n cr\'{i}tica.\\
+Condiciones de soluci\'{o}n de regi\'{o}n cr\'{i}tica.\\
+
+\begin{itemize}
+	\item Dos procesos no pueden ingresar al mismo tiemop a la RC.
+	\item No hacer suposiciones sobre el n\'{u}mero o velocidad de procesadores.
+	\item Un proceso que no est\'{e} en su RC no puede impedir a otro entrar a la RC.
+	\item Ning\'{u}n proceso debe esperar indefinidamente.
+\end{itemize}
+\begin{lstlisting}[language=C]
+while(lock); // bussy waiting
+lock = false;
+region_critica();
+lock = true;
+\end{lstlisting}
+Soluci\'{o}n de Peterson.\\
+SW y algoritmo\\
+Basada en una variable de turno y un arreglo de inter\'{e}s.\\
+\textbf{Usa busy waitings}\\
+\large{TSL (Test Set Lock)}.\\
+Es una instrucci\'{o}n de ensamblador que en un solo ciclo de reloj.\\
+\begin{itemize}
+	\item Establece \textit{Z} seg\'{u}n el n\'{u}mero de variables.
+	\item Pone un valor $\neq$ 0 en el n\'{u}mero de variables.
+\end{itemize}
+
+\begin{lstlisting}[language=bash ]
+ENTER_REGION
+	TSL # LOCK
+	BNE ENTER_REGION
+	RET
+
+LEAVE_REGION
+	STORE 0 #LOCK
+\end{lstlisting}
+
+\section{Sleep/wakeup}
+\begin{lstlisting}[language=C]
+Enter_region{
+	while(lock){
+		sleep();
+	}
+	return();
+}
+Leave_region{
+	wakeup(x);
+}
+\end{lstlisting}
+
+\section{Sem\'{a}foros.}\\
+Un sem\'{a}foro es un conjunto que contiene.
+\begin{itemize}
+	\item Una variable entera que llamamos em\'{a}foro.
+	\item Dos funciones at\'{o}micas que son:
+	\begin{itemize}
+		\item UP: Incrementa el valor del sem\'{a}foro y desbloquea todos los procesos que est\'{a}n esperando.
+		\item DOWN: Trata de decrementar el sem\'{a}foro y se bloquea si vale 0. Cuando se desbloquea reintenta desde el principio.
+	\end{itemize}
+\end{itemize}
+Cuando usamo sem\'{a}foros para resolver RC el sem\'{a}foro solo teoma valores de 0 y 1, y por conveniencia se renombran UP-LOCK y DOWN-UNLOCK.\\
+Esta interfaz se conoce como MUTEX.\\
+El est\'{a}ndar que desarroll\'{o} \textit{UNIX} para los sem\'{a}foros, se llama \textit{POSIX}.\\
+La biblioteca est\'{a}ndar de \textit{C} para manejo de \textit{POSIX} es \textit{p_thread.h}.\\
+\section{Monitores}
+Son conjuntos de una variable de control, un conjunto de expresiones que evaluan y escriben estas variables y las modifican.\\
+Los lenguajes deben garantizar la exclusi\'{o}n mutua en el uso de los miembros del monitor.\\
+Implementaci]'{o}n en C++\\
+Se usan etiquetas de compilador para se\~{n}alar los elementos de monitor, inclutendo un mutex.\\
+
+Java.\\
+\textit{synchronized}
+Es una primitiva que se le aplica a un m\'{e}todo que debe tener solo  la regi\'{o}n cr\'{i}tica.\\
+Java garantiza la exclusi\'{o}n mutua a nivel de JVM para todos los hilos que use nese m\'{e}todo.\\
+
+Programa multihilos.\\
+Crear dos hilos secundarios con p_threads_create y par\'{a}metros por defectos.\\
+Ir al Universum.
+Proyecto: Algoritmo de persecuci\'{o}n de un rey y una reyna.\\
+\begin{enumerate}
+	\item El primer hilo mover\'{a} al rey tratando de alejarse lo m\'{a}s posible de la reyna.
+	\item El segundo hilo mueve a la reyna tratando de capturar al rey.
+	\item Ambos hilos son concurrentes y no usan turnos, se mueven todas las veces que pueden hasta lograr su objetivo.
+	\item Al terminar cualquiera de los dos hilos, se imprime el n\'{u}mero de movimientos de cada pieza y termina el proceso.
+	\item El rey y la reyna empiezan donde inician habitualmente, el rey es blancas y la reyna negras.
+	\item Ambos comienzan en la posici\'{o}n del rey de su color.
+	\item Los dos pueden moverse en cualquiera de las ocho direcciones, el rey solamente una casilla y la reyna las que sean.
+\end{enumerate}
+
