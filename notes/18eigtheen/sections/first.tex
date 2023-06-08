@@ -1,0 +1,66 @@
+\newpage
+\part{Atenci\'{o}n a Interrupciones}
+
+\begin{enumerate}
+	\item El controlador del dispositivo usa las IRQ para notificar al CPU que requiere atenci\'{o}n.
+	\item Al inicio del pr\'{o}ximo ciclo de CPU detecta la interrupci\'{o}n y responde con la se\~{n}al de ACK
+	\item se almacenan los elementos m\'{i}nimos del proceso PC, palabra de control y stack de control.
+	\item Se carga un estado inicial para la runtina de atenci\'{o}n de interrupciones.
+	\item Inicia la ejecuci\'{o}n de la rutina, si lo requiere puede guardar una mayor parte del stado del CPU.
+	\item La rutina realiza las acciones para atender la interrupci\'{o}n y debe ser espec\'{i}fica para \'{e}ste.
+	\item Una vez concluida la rutina se recuperan los valores almacenados en los registros del CPU que se hab\'{i}an guardado.
+	\item Finalmente se recupera el PC, palabra de control y stack de control para reanudar el proceso.
+\end{enumerate}
+Las interrupciones son un mal necesario, por lo que sus rutinas deben ser lo m\'{a}s sencillas y cortas posibles.
+
+\chapter{Tipos de interrupci\'{o}n.}
+
+\begin{itemize}
+	\item S\'{i}ncronas - Disparadas por eventos internos al CPU de acuerdo al propio reloj de este.
+	\item As\'{i}ncronas - Generadas desde el exterior de CPU usando las l\'{i}neas IRQ.
+\end{itemize}
+
+\part{Abstracci\'{o}n de hardware}
+\chapter{Windows}
+\textbf{HAL}\\
+\textbf{H}ardware \textbf{A}bstraccion \textbf{L}ayer\\
+\chapter{Linux}
+Trata todo como streams de archivos y usa una sola clase de abstracci\'{o}n y sus derivadoas para todos los dispositivos \textit{udev}
+
+\part{Sistemas distribuidos.}
+Son sistemas que reunen los recursos de varias m\'{a}quinas conectadas en red para el uso de una sola aplicaci\'{o}n.
+\chapter{Estilos arquitect\'{o}nicos.}
+
+\section{Arquitectura de sistemas.}
+Se encarga de estudiar los componentes y las relaciones entre estos para los sitemas de informaci\'{o}n.\\
+
+\section{Estilo arquitectonico.}
+Son colecciones de soluciones conocidas a problemas comunes.\\
+
+\section{Mainframe.}
+Todos los recursos en un solo equipo y todos los dospositivos de I/O est\'{a}n conectados directamente a esta. (o indirectamente).
+\begin{itemize}
+	\item Toda la informaci\'{o}n del sistema se almacena ah\'{i}.
+	\item Las interfaces de usuario (dispositivos de I/O tambi\'{e}n) se controlane en el mainframe.
+	\item Toda la funcionalidad se ejecuta ah\'{i}
+\end{itemize}
+
+\section{Cliente-servidor}
+Divide el trabajo en un servidor y un conjunto de clientes que se conectan al servidor.\\
+\subsection{El servidor se encarga de}
+\begin{itemize}
+	\item Almacenar y vigilar la integridad de la informaci\'{o}n.
+	\item Implementa las pol\'{i}ticas de negocio.
+	\item Implementar su parte del protocolo de comunicaci\'{o}n.
+\end{itemize}
+
+\subsection{El cliente se encarga de}
+\begin{itemize}
+	\item Implementa su lado del protocolo de comunicaci\'{o}n.
+	\item Implementa la interfaz de usuario.
+	\item Validaciones de datos.
+\end{itemize}
+
+\section{Cliente abierto}
+Estandariza los clientes
+

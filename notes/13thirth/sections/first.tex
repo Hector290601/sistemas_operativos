@@ -1,0 +1,42 @@
+\chapter{Administraci\'{o}n de sistemas de archivos.}
+\part{Definiciones}
+\section{Archivo}
+Es una abstracci\'{o}n, colecci\'{o}n de datos con contexto particular, identificaci\'{o}n, persistente, prop\'{o}sito particular, con una estructura regular y sigue un c\'{o}digo con reglas regulares de representaci\'{o}n.\\
+
+\section{Directorio.}
+Es un listado de archivos que puede construir estructuras jer\'{a}rquicas.\\
+
+\section{Metadatos.}
+Son datos que almacenan informaci\'{o}n sobre archivos (atributos).\\
+
+\section{Tipo de archivo.}
+Son los archivos que se clasifican seg\'{u}n los mecanismos de implementaci\'{o}n en el sistema de archivos.\\
+\begin{itemize}
+	\item Archivo Plano - Info de App.
+	\item Directorio
+	\item Asociado a dispositivo de I/O Bloque (As\'{i}ncronos).
+	\item I/O Caracter (S\'{i}ncronos)
+\end{itemize}
+
+\part{Objetivos.}
+\begin{itemize}
+	\item Almacenar grandes vol\'{u}menes de informaci\'{o}n.
+	\item Reducir overhead.
+	\item Informaci\'{o}n sobrevive a los procesos (persistente).
+	\item M\'{u}ltiples procesos pueden acceder a la informaci\'{o}n de forma cconcurrente (Protecci\'{o}n de eventos de carrera).
+	\item Proporcionar acceso a la informaci\'{o}n.
+		\begin{itemize}
+			\item APIs estandarizadas.
+			\item Incluir utilidades de mantenimiento.
+		\end{itemize}
+	\item Control de acceso.
+	\item Proteger la integridad de la informaci\'{o}n y se use de forma correcta, Depende de la autenticaci\'{o}n y manejo de privilegios.
+\end{itemize}
+
+\part{Organizaci\'{o}n del sistema de archivos.}
+Para manejo de los metadatos, tenemos los atributos de archivos.
+\begin{itemize}
+	\item Nombre: Es una caracter\'{i}stica del directorio asociada a la referencia a este.
+	\item Identificador: Es un dato que se asocia de forma biun\'{i}voca al archivo.
+	\item Ubicaci\'{o}n del archivo: Referencias a los medios de almacenamiento que permitan recuperar la informaci\'{o}n del archivo.
+\end{itemize}

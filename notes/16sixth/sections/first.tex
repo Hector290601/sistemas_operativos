@@ -1,0 +1,89 @@
+\newpage
+\chapter{FAT}
+\begin{itemize}
+	\item Solo almacena el ID del bloque.
+	\item Dos copias de la FAT.
+	\item Si se da\~{n}an ambas, podemos explrorar todos los bloques para reconstruir las secuencias de bloques.
+	\item Si no recuperamos directorios, solo tenemos datos sin atributos.
+	\item Cadenas perdidas (usualmente inutilizables)
+\end{itemize}
+
+\chapter{FAT32}
+Incrementa el tama\~{n}o de las direcciones y con ello el tama\~{n}o de la partic\'{o}n y archivo m\'{a}ximo respecto a la FAT16.
+\textbf{Ambos carecen de control de acceso.}
+
+\chapter{NTFS}
+Agrega privilegios para control de acceso y mueve las copias de la FAT a la parte media de la partici\'{o}n.
+
+\chapter{I-nodos}
+Estos son nodos de informaci\'{o}n sobre los archivos (metadatos).
+
+Estos se generan por cada archivo que contienen los atributos y las primeras direcciones.
+
+\section{I-nodos multinivel}
+\begin{itemize}
+	\item I-nodo directo
+	\begin{itemize}
+		\item I-nodo indirecto
+		\begin{itemize}
+			\item I-nodo doble indirecto.
+			\begin{itemize}
+				\item I-nodo triple indirecto.
+				\item Etc.
+			\end{itemize}
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+Se usa \'{a}rboles binarios balanceados (B+) (por que son la estructura de datos m\'{a}s eficiente conocida), en sistemas de archivos como XFS (Reisner FS).\\
+Optimizados a velocidad y tolerancia a fallos.\\
+
+\section{EXT-4}
+Esta usa solo I-nodos directos, limitando el tama\~{n}o m\'{a}ximo de archivo.
+(2K: M\'{a}ximo 2GB por archivo) y usa Log file system para tolerancia a fallos.
+\begin{itemize}
+	\item Seguro: Usa log file system en todos los bloques, lento, pero con una mayor tolerancia a fallos.
+	\item Medio (default): Solo usa LFS para metadatos.\\
+		Incluso si tratamos de terminar las operaciones de metadatos antes de marcar las versiones como inactivas.
+	\item R\'{a}pida: Solo almacena metadatos en \textit{LFS} y manda las operaciones a discreci\'{o}n de dispositivo.
+\end{itemize}
+
+\chapter{Log file system}
+Log file system o sistemas de bit\'{a}cora.\\
+En estos, cuando se alteran los archivos, no se editan los bloques que se tienen, si no que se genera una nueva "versi\'{o}n" y solo se marca como inactiva la versi\'{o}n anterior hasta que se termina de genrar la nueva versi\'{o}n.\\
+Esto genera un uso progresivo del espacio de la partici\'{o}n.\\
+Para recuperar los bloques de versiones anteriores, se tiene un proceso de baja prioridad (nice) que toma los bloques fragmentados y genera una nueva versi\'{o}n de sus archivos compactando el espacio disponible al inicio de la partici\'{o}n.
+
+\chapter{Protecci\'{o}n de archivos..}
+\section{Protecci\'{o}n de la informaci\'{o}n.}
+
+\subsection{Mecanismos.}
+\begin{itemize}
+	\item Dominio de informaci\'{o}n.\\
+		Se centraliza el registro y control de la informaci\'{o}n y solamente se da acceso a un grupo particular.
+	\item Niveles de Acceso.\\
+	\begin{itemize}
+		\item P\'{u}blica.
+		\item Privada.
+		\item Confidencial.
+		\item Secreta.
+		\item TOP SECRET.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Principios.}
+\begin{itemize}
+	\item M\'{i}nimos privilegios.\\
+		Los usuarios deben tener los m\'{i}nimos privilegios necesarios para su labor.
+	\item Valor de la informaci\'{o}n.
+	\begin{itemize}
+		\item Oportuna.
+		\item Veraz.
+		\item Concreta.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Sistemas de privilegios}
+Se busca definir una serie de privilegios para cada uno de los materiales que se puedan asignar de manera individual por grupo y por individuo.
+
+\newpage
+Revolution OS

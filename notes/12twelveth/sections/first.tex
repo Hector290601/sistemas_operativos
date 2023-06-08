@@ -1,0 +1,34 @@
+\newpage
+
+\chapter{Planeaci\'{o}n de procesos.}
+
+\section{Round Robin}
+Se van asignando los turnos uno a uno seg\'{u}n la cantidad de procesos, al llegar al final de la lista reinicia por el principio. \\
+No tiene niveles de prioridad. \\
+\section{Round Robin con m\'{u}ltiples filas}
+Cada nivel de prioridad tiene su propia lista. Se atiende un proceso hasta que todos los procesos de la lista de nivel sean atendidos.\\
+Tiende a dejar sin atenci\'{o}n los procesos de prioridades bajas si hay muchos niveles y/o procesos de prioridad superior.\\
+
+\section{Asignaci\'{o}n garantizada.}
+Hacer compromisos de atenci\'{o}n a los procesos.\\
+
+\section{Loter\'{i}a.}
+Se panea un periodo de tiempo (x segundos) y se estima el n\'{u}mero de ejecuci\'{o}n del periodo, se genera un "boleto" por cada turno y se reparten estos entre los procesos activos.\\
+Luego se reorgaizan los boletos de forma aleatoria y durante el periodo se atienden los procesos que tienen asignados los boletos que van saliendo.\\
+\section{Tiempo real.}
+Para clasificarles necesitamos definir:\\
+\begin{itemize}
+	\item Procesos:
+	\begin{itemize}
+		\item Eventuales: Procesos que se inician, realizan un afunci\'{o}n y terminan.
+		\item Persistentes: Requieren atenci\'{o}n del CPU en base a peticiones que recibe el proceso que requieren su atenci\'{o}n.
+		\item Peri\'{o}dicos: Estos tienen una carga de trabajo regular a lo largo del tiempo.
+		\item Aperi\'{o}dicos: El nivel de carga var\'{i}a con el tiempo.
+	\end{itemize}
+\end{itemize}
+\section{Tipos de planeaci\'{o}n de \textit{RT}.}
+\begin{itemize}
+	\item Hard Real Time: Garantiza el cumplimiento de los compromisos pero solo admite procesos persistentes y peri\'{o}dicos.
+	\item Soft Real Time: Estos hacen un "mejor efuerzo" de cumplir los compromisos y soportan procesos eventuales y aperi\'{o}dicos.
+	\item Primer compromiso: \textit{Earliest Deadline}.
+\end{itemize}

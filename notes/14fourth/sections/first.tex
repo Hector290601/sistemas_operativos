@@ -1,0 +1,60 @@
+\newpage
+\chapter{Atributos de archivo.}
+
+\section{Ubicaci\'{o}n.}
+
+\section{Tama\~{n}o.}
+\begin{itemize}
+	\item Real.
+	\item M\'{a}ximo.
+\end{itemize}
+
+\section{marcas de Time}
+\begin{itemize}
+	\item Creaci\'{o}n.
+	\item Modificaci\'{o}n.
+	\item Apertura.
+\end{itemize}
+
+\section{Informaci\'{o}n de control de acceso.}
+\begin{itemize}
+	\item Usuario.
+	\begin{itemize}
+		\item Creaci\'{o}n.
+		\item Due\~{n}o.
+	\end{itemize}
+	\item Grupo
+	\begin{itemize}
+		\item Usuarios con permisos espec\'{i}ficos.
+		\item Efectivo.
+	\end{itemize}
+\end{itemize}
+
+\section{Solo lectura.}
+\section{Sistema.}
+\section{Escondidos.}
+\section{Archivo.}
+\section{Temporal}
+\section{Locks (protecci\'{o}n de concurrencia).}
+\section{Organizaci\'{o}n f\'{i}sica.}
+\subsection{Cinta magn\'{e}tica.}
+\begin{itemize}
+	\item Acceso Serial
+	\item Al inicio se coloca un "header" con informaci\'{o}n de la cinta seguido del directorio cada uno de un sector (512 bytes).
+	\item El directorio indica donde inician los archivos y se puede usar el avance y rebobinado r\'{a}pido para encontrarlos en menos tiempo, todos los sectores del archivo van juntos y en secuencia.
+\end{itemize}
+\subsection{Disco magn\'{e}tico.}
+Se dividen las superficies de los discos en cilindros (conjuntos de pistas seg\'{u}n la posici\'{o}n del peine de cabezas) y cada uno de estos se divide en bloques (sectores m\'{a}s grandes).
+El disco tiene entonces un conjunto de bloques organizados en cilindros. En los primeros cilindros del disco se tiene el MBR (Master Boot Record) que permite cargar un S.O del dispositivo. Luego sigue la tabla de particiones para cada partici\'{o}n tiene un encabezado con informaci\'{o}n seg\'{u}n los sistemas de archivos.\\
+Para reconstruir los archivos de varios bloques, se necesitan tabals de ubicaci\'{o}n de archivos. Originalmente se contruye una lista doblemente ligada con los bloques del archivo que permite recorrerlo en secuencia.\\
+Para tener acceso aleatorio real, se necesita una tabla con todos los bloques del archivo.\\
+Todos los bloques tienen su c\'{o}digo de correcci\'{o}n de errores.\\
+\paragraph{Discos Bernouli.} para levitaci\'{o}n de las cabezas.
+\section{Dispositivos \'{o}pticos.}
+CDs.
+\begin{itemize}
+	\item \'{U}nica pista coc\'{e}ntrica.
+	\item Policarbonato.
+	\item Un par de nan\'{o}metros de ancho.
+	\item Altitud media de la superficie.
+\end{itemize}

@@ -1,0 +1,81 @@
+\newpage
+\chapter{Esquema h\'{i}brido.}
+Implementamos lla segmentaci\'{o}n donde cada sefmento es un conjunto de p\'{a}ginas.
+\begin{itemize}
+	\item Se conservan las direcciones l\'{o}gicas y tablas de s\'{i}mbolos, los segmentos "inician" en una p\'{a}gina y la tabla de p\'{a}ginas se ordenan por segmento.
+\end{itemize}
+\textbf{De aqu\'{i} salen los colectores de basura como los de Java.}
+Algoritmos de reemplazo de p\'{a}ginas.
+\begin{itemize}
+	\item Fallo de p\'{a}gina: Cuando se trata de usar una p\'{a}gina que solamente est\'{a} en almacenamiento secundario.
+	\item Reemplazo de p\'{a}gina: Es elegir un marco de p\'{a}gina para mover su informaci\'{o}n a almacenamiento secundario y usarlo para cargar una p\'{a}gina de memoria.
+	\item Algoritmo ideal: Debe reemplazarse la p\'{a}gina que ser\'{a} usada en la mayor cantidad de tiempo.
+	\item NRU - Not Recently Used.
+	\begin{itemize}
+		\item Se agregan dos bits a cada p\'{a}gina de la tabla de p\'{a}ginas que est\'{e}n usando marcos de p\'{a}gina.
+		\begin{itemize}
+			\item Bit R: Read, Se enciende cuando se haga cualquier acceso a la informaci\'{o}n de las p\'{a}ginas
+			\item Bit W: Write, Este se enciende cuando la informaci\'{o}n se modifica, se apaga cuando se carga de almacenamiento secundario o se escribe en este y se tiene la misma informaci\'{o}n en el marco de p\'{a}gina y en el almacenamiento secundario.
+		\end{itemize}
+			En el caso de un reemplazo de p\'{a}gina se dividen las p\'{a}ginas en cuatro categor\'{i}as seg\'{u}n el valor de sus bits R y W como sigue:\\
+			\begin{center}
+				\begin{tabular}{| c | c | c |}
+					\hline
+					Categor\'{i}a & R & W\\
+					\hline
+					\hline
+					0 & 0 & 0 \\
+					\hline
+					1 & 0 & 1 \\
+					\hline
+					2 & 1 & 0 \\
+					\hline
+					3 & 1 & 1 \\
+					\hline
+				\end{tabular}
+			\end{center}
+			Elegir al azar una p\'{a}gina de la menor categor\'{i}a no vac\'{i}a.\\
+			Todos los bits R se apagan peri\'{o}dicamente.\\
+			NRU - de segunda oportunidad y lista circular "de reloj"\\
+			Bit R no se apaga de forma peri\'{o}dica.\\
+			En caso de un reemplazo de p\'{a}gina:\\
+			\begin{itemize}
+				\item Se revisa la p\'{a}gina que se\~{n}ala el cursor.
+				\begin{itemize}
+					\item Si R=0 reemplazamos esa p\'{a}gina y avanzamos el cursor.
+					\item Si R=1, se apaga R y se repite.
+				\end{itemize}
+			\end{itemize}
+	\end{itemize}
+	\item LRU - Less Recently Used: Estos buscan identificar el tiempo desde el \'{u}ltimo uso de p\'{a}gina.
+	\begin{itemize}
+		\item Usando el registro T, se agrega una copia del valor dedl registro T a cada entrada de la tabla de p\'{a}ginas y se reemplaza la que tenga el m\'{i}nimo valor registrado
+		\item Registros de corrimiento: Se agrega un conjunto de bits (entre 4 y 8) a cada entrada de la tabla de p\'{a}ginas implementados como un registro de corrimiento con su bit m\'{a}s significativo es R. Peri\'{o}dicamente (cada q) se recorren a la izquierda todos los registros. PAra elegir una p\'{a}gina a reemplazar se elige una al azar de las que tienen el mismo valor en el registro de corrimiento.
+	\end{itemize}
+	\item Tablas de p\'{a}ginas multinivel: La direcci\'{o}n del offset se divide en partes con la parte m\'{a}s significativa se hace una tabla que sen\~{n}ala a un segundo nivel de tablas donde se colocan solo las referencias de memoria implementada.
+\end{itemize}
+
+\section{Notas por sistema operativo.}
+\subsection{Linux}
+Linux permite las p\'{a}ginas grandes, para \'{e}stas divide la memoria por la mitad hasta llegar al tama\~{n}o deseado para evitar fragmentaci\'{o}n. Estassiki kas usa el \textit{Kernel} para uso del sistema operativo. En estas se pueden generar segmentos de manera contigua.\\
+La tabla de segmentos tiene un campo para indicar si este se implementa con memoria contigua o con p\'{a}ginas.\\
+Usan un esquema de niveles de privilegios para evitar la modificaci\'{o}n accidental de p\'{a}ginas del sistema se agrega a la tabla de segmentos y tiene 4 niveles.\\
+0 - Kernel\\
+1\\
+2\\
+3 - Compartida con cualquier aplicaci\'{o}n.\\
+Usa tabla de p\'{a}ginas multinivel a 3 niveles (10, 10 y 12 bits) en arquitacturas de 32 bits, usa 4 niveles (9, 9, 9, 18)\\
+Para reemplaos de p\'{a}ginas parte del algoritmo de reloj, pero:\\
+\begin{itemize}
+	\item Divide las p\'{a}ginas en dos conjuntos seg\'{u}n el uso (m\'{a}s uso, menos uso).
+	\item Linux trata de mantener el 10\% de marcos de p\'{a}gina libres, para ello, peri\'{o}dicamente busca p\'{a}ginas de la lista de menor actividad para lavarlas y liberar esos carcosy tambi\'{e}n buscando "reemplazar" las p\'{a}ginas que se usen contra la lista de las p\'{a}ginas recientemente usadas.\\
+\end{itemize}
+Las p\'{a}ginas que identifica para moverse al almacenamiento secundario se forman en una lista y son lavadas (grabadas a disco) antes de ser liberadas, lo que da una oportunidad adicional de ser usadas y abandonar la lista antes de liberar sus marcos de p\'{a}gina.
+
+\textit{RT} Linux- Para sistemas de tiempo real, se omite la memoria virtual. Tambi\'{e}n busca asignar todos los marcos de memoria requeridos al inicio del proceso.
+
+\subsection{Windows}
+Adminsitraci\'{o}n h\'{i}brida (desde vista).\\
+Windows toma por defecto los 2GB de memoria con direcciones m\'{a}s altas para el sistema operativo, usa tabla de p\'{a}ginas multinivel de dos niveles (directorio de p\'{a}ginas y tabla de p\'{a}ginas).\\
+\textbf{NUMA} Non Uniform Memory Access, que asocia el uso de ventas de memoria por procesador.\\
+P\'{a}ginas grandes solamente para S.O permite protecci\'{o}n de memoria en sistemas de 64 bits.\\

@@ -1,0 +1,44 @@
+\newcommand{\printlist}[1]{%
+	\foreach \x [count=\xi] in {#1} {
+		\href{mailto://\x}{\x},
+	}%
+}
+
+\newcommand{\addAhuthor}[8]{
+	\chapter{#1}
+	\begin{itemize}
+		\item[Name] #1
+		\item[Mobile] #2
+		\item[Mail] \printlist{#3}
+		\item[Github] #4
+	\end{itemize}
+	\section{Attributions}
+	#5
+	\section{First moddify} #6
+	\section{Last moddify} #7
+	\section{About me} #8
+}
+
+\part{Authors}
+\addAhuthor{
+	Hector Robles Mart\'{i}nez
+}{
+	+52 5510604869
+}{
+	robletes062901@gmail.com,hector.robles@daimler.com
+}{
+	hector290601
+}{
+	First update and attributions
+}{
+	January 31, 2023
+}{
+	Febraury 1, 2023
+}{
+	I'm a Computer Engenieering Student, actually I'm a passant on MBA.
+}
+%If you want to add a new author, simple call the \addAhuthor command, your
+%info need to be at the next way:
+% \addAhuthor{Name}{Mobile phone}{Email list separed by commas}{github user}
+% {Description about your changes}{Date of your first change to the schema}
+% {Date of the last update to this schema}{Short description about you}

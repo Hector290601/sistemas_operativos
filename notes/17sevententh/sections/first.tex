@@ -1,0 +1,77 @@
+\newpage
+\part{Sistema de archivos}
+\chapter{RAID}
+ARreglo de Discos Redundante Bajo Costo.\\
+Es un Estandard en cuanto a las prestaciones que define diversos niveles (pero no para la implementaci\'{o}n).
+\begin{itemize}
+	\item 0 - Just a bunch of disks.
+	\begin{itemize}
+		\item Reune toda la capacidad de almacenamiento de los dispositivos.
+		\item No a\~{n}ade desempe\~{n}o.
+		\item No a\~{n}ade redundancia.
+	\end{itemize}
+	\item 1 - Mirror.\\
+		Los dispositivos se ordenan por pares y deben tener las mismas caracter\'{i}sticas (No se recomienda que sean del mismo lote), se toma uno como maestro y el otro como esclavo, todas las operaciones se realizan en el maestro y la informaci\'{o}n se replica al esclavo. Si un dispositivo falla, el que est\'{a} \'{i}ntegro pasa a ser el maestro.
+	\begin{itemize}
+		\item No mejora desempe\~{n}o.
+		\item Tiene redundancia completa.
+	\end{itemize}
+	\item 5 y 6.\\
+		Con redundancia por bloque distribuido por dispositivo.
+	\item Niveles combinados "+"
+\end{itemize}
+
+\section{Hot Swap.}
+Capacidad de reemplazar dispositivos sin detener la operaci\'{o}n.
+\section{Respaldo.}
+Planes de respaldo.
+\begin{itemize}
+	\item ROI.
+	\begin{itemize}
+		\item Costo de recuperaci\'{o}n con uso del respaldo.
+		\item Costo sin backup.
+	\end{itemize}
+	\item Se requiere un plan que se debe aplicar de forma consistente.
+	\item Debe considerar cosas como el costo de los medios.
+	\item Esfuerzo.
+	\item Protecci\'{o}n a amenazas del ambiente.
+	\item Procedimiento de eliminaci\'{o}n.
+\end{itemize}
+\part{Temas examen}
+\textbf{10 de mayo, 19 a 21}\\
+\textit{Todo hasta archivos.}\\
+
+\part{Administraci\'{o}n de dispositivos de entrada y salida.}
+\begin{itemize}
+	\item Variedad de dispositivos de I/O.
+	\item Familias de dispositivos por funci\'{o}n.
+	\item Mercado.
+	\item Funcionalidad.
+	\item Facilitar el desarrollo de aplicaciones con independencia f\'{i}sica.
+\end{itemize}
+
+\begin{enumerate}
+	\item Apps.
+	\item Sw del \'{a}rea del usuario API (XFamilia) Rutinas de manejo de errores.
+	\item Administraci\'{o}n de dispositivos de I/O.
+	\item Controladores espec\'{i}ficos. (Fabricante)
+	\item Abstracci\'{o}n de Hardware.
+		\begin{itemize}
+			\item Comunicaci\'{o}n.
+			\item Sincronizaci\'{o}n.
+		\end{itemize}
+\end{enumerate}
+
+\chapter{Abstracci\'{o}n de Hardware}
+\begin{itemize}
+	\item Dispositivos s\'{i}ncronos mapeados a memoria.
+	\item Programmed interface. (s\'{i}ncrono).
+	\item As\'{i}ncrono.
+	\begin{itemize}
+		\item L\'{i}neas de interrupci\'{o}n.\\
+			IRQ - Interrupt Request Line.
+		\item As\'{i}ncronas.
+	\end{itemize}
+	\item DMA - Direct Memory Access.\\
+	Se agrega otro bus para ver qui\'{e}n toma control de la memoria.
+\end{itemize}

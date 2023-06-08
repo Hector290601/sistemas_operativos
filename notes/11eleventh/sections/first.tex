@@ -1,0 +1,57 @@
+\newpage
+\chapter{Planeaci\'{o}n de procesos.}
+\begin{itemize}
+	\item Deseme\~{n}o cpu -> proceso.
+	\item Estabilidad.
+		\begin{itemize}
+			\item Predecible.
+			\item Confiable.
+		\end{itemize}
+	\item Justicia seg\'{u}n prioridad.
+	\item Cumplimiento de pol\'{i}ticas.
+	\item Balance (Mantener los recursos ocupados).
+\end{itemize}
+
+\section{Opciones disponibles.}
+\begin{itemize}
+	\item Batch.\\
+		\begin{itemize}
+			\item Terminar r\'{a}pido.
+			\item Maximizar el uso del CPU.
+			\item Minimizar el tiempo de procesamiento.
+		\end{itemize}
+	\item Multiprogramaci\'{o}n.
+		\begin{itemize}
+			\item Interactivos.
+			\item Tiempo compartido.
+			\item Maximizar la productividad (Periodo de tiempo entre atenciones).
+			\item Tiempo de respuesta.
+			\item Proporcionalidad.
+		\end{itemize}
+	\item Tiempo real.
+		\begin{itemize}
+			\item Cumplimiento de compromisos a atenci\'{o}n.
+			\item Predectibilidad.
+		\end{itemize}
+\end{itemize}
+Las direcciones hidr\'{a}ulicas son computadoras an\'{a}logas.\\
+Edge y Chrome, mandan una petici\'{o}n, si no contesta en medio segundo, manda un nuevo paquete de forma regular cada medio segundo hasta ser diez las peticiones, si el servidor sigue sin responder, se esperan 30 segundos, si no responden, se le notifica al usuario que el servidor no responde.\\
+
+\section{Algoritmos de planeaci\'{o}n.}
+\begin{itemize}
+	\item FIFO - First Input First Output.
+	\item Con multiprogramaci\'{o}n.
+		\begin{itemize}
+			\item Se cargan cuantos quepan en la memoria.
+			\item Atendiendo exclusivamente al primero hasta que se bloquee.
+			\item Shortest Job First.
+				Se reordenan los programas para poner primero los que toman menos tiempo, reduciendo el tiempo promedio de terminaci\'{o}n.\\
+		\end{itemize}
+	\item Tiempo compartido.
+		\begin{itemize}
+			\item Shortest remaining job first.
+				Para no castigar tanto los procesos largos considera el tiempo de atenci\'{o}n para adelantarlos en la fila.
+			\item Highest response ratio next.
+				Se d\'{a} prioridad tanto por el tiempo restante como por el tiempo transcurrido sin atender.\\
+		\end{itemize}
+\end{itemize}
